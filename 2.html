@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+<canvas id="c" width="700" height="700">
+</canvas>
+<script>
+window.requestFrame=function(callback){
+    var f=function(callback){
+        window.setTimeout(callback, 500);
+    }
+    f(callback);
+};
+function draw(tang, context){
+    context.beginPath();
+    context.moveTo(tang.x+30, tang.y-3);
+    var a=tang.x+30; var b=tang.y+55;
+  context.lineTo(a, b);
+    context.lineTo(tang.x-25,tang.y-5);
+    context.fill();
+
+    //context.stroke();
+}
+function animat(tang, context, canvas, time){
+//var t=(new Date()).getTime()-time;
+var speed=10;
+
+if((tang.x+30<canvas.width) && (tang.y+55<canvas.height)){
+    tang.x=tang.x+speed;
+    tang.y=tang.y+speed;
+
+}
+context.clearRect(0, 0, canvas.width, canvas.height);
+draw(tang, context);
+requestFrame(function(){ animat(tang, context, canvas, time );}
+);
+}
+var tang={x:25, y:22};
+var canvas = document.getElementById('c');
+var context = canvas.getContext('2d');
+draw(tang, context);
+animat(tang, context, canvas, (new Date()).getTime() );
+    </script>
+</body>
+</html>

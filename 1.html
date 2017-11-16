@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+</head>
+<body>
+<canvas id="c" width="400" height="250">
+</canvas>
+<script>
+    var canvas = document.getElementById('c');
+        var context = canvas.getContext('2d');
+
+    var img=new Image();
+        img.src='galak.png';
+       img.onload=function(){
+           context.save();
+           context.translate(100,0);
+           context.drawImage(img, 0, 0, 200, 125);
+           context.restore();
+           context.fillStyle="rgb(0,0,1)";
+           context.fillRect(0,0,100,125);
+           context.stroke();
+       }
+
+
+
+    </script>
+</body>
+</html>
